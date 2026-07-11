@@ -116,22 +116,22 @@ INA219	Telemetria consum	I2C
                              └─────┬─────┘
                                    │
                           ┌────────▼────────┐
-                          │   Bateria LiPo   │
+                          │   Bateria LiPo  │
                           └────────┬────────┘
                                    │
                           ┌────────▼────────┐
-                          │      ESP32       │
+                          │      ESP32      │
                           └────────┬────────┘
         ┌──────────────────────────┼──────────────────────────┐
         │                          │                          │
    ┌────▼────┐               ┌─────▼────┐               ┌─────▼────┐
-   │  HX711  │ (pes)         │  DS18B20  │ (temp interna)│  SHT40    │ (temp/hum ext)
+   │  HX711  │ (pes)         │  DS18B20 │ (temp interna)│  SHT40   │ (temp/hum ext)
    └────┬────┘               └─────┬────┘               └─────┬────┘
         │                          │                          │
         │                          │                          │
    ┌────▼────┐               ┌─────▼────┐               ┌─────▼────┐
-   │ INMP441 │ (so)          │ Sensor IR │ (activitat)   │  INA219   │ (consum)
-   └─────────┘               └───────────┘               └───────────┘
+   │ INMP441 │ (so)          │ Sensor IR│ (activitat)   │  INA219  │ (consum)
+   └─────────┘               └──────────┘               └──────────┘
 </pre>
 📎 Documents relacionats
 wiring.md
