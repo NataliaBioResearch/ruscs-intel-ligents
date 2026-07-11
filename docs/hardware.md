@@ -106,6 +106,7 @@ Sensor IR	Activitat	Digital
 INA219	Telemetria consum	I2C
 
 ## diagrama ASCII del sistema
+<pre>
                     ┌──────────────────────────┐
                     │      Panell Solar        │
                     └──────────────┬───────────┘
@@ -131,7 +132,7 @@ INA219	Telemetria consum	I2C
    ┌────▼────┐               ┌─────▼────┐               ┌─────▼────┐
    │ INMP441 │ (so)          │ Sensor IR │ (activitat)   │  INA219   │ (consum)
    └─────────┘               └───────────┘               └───────────┘
-
+</pre>
 📎 Documents relacionats
 wiring.md
 
