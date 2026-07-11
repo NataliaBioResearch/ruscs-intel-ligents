@@ -1,112 +1,140 @@
 # ruscs-intel-ligents
 
-Sistema IoT per monitorar ruscs amb ESP32 i sensors de pes, temperatura, humitat, so i activitat. Inclou enviament de dades via MQTT, alertes automàtiques i integració amb InfluxDB i Grafana per anàlisi i visualització.
+Sistema IoT per al monitoratge de ruscs basat en ESP32 i sensors ambientals. Permet obtenir dades en temps real sobre l'estat del rusc, detectar anomalies i visualitzar la informació mitjançant dashboards interactius.
 
-## Objectius
+Característiques
+Monitoratge continu del pes del rusc.
+Mesura de temperatura interna i externa.
+Control de la humitat ambiental.
+Anàlisi del nivell de so.
+Detecció d'activitat d'entrada i sortida.
+Enviament de dades via MQTT.
+Sistema d'alertes automàtiques.
+Integració amb InfluxDB i Grafana.
+Simulador complet per fer proves sense hardware.
+Arquitectura
+flowchart TD
 
-- Monitoratge continu del rusc (pes, temperatura interna/externa, humitat, so, activitat).
-- Enviament de dades via MQTT a un servidor o dashboard.
-- Sistema d’alertes per detectar anomalies (robatori, enjambrament, malaltia, atac de vespa).
-- Integració amb InfluxDB + Grafana per visualització.
-- Arquitectura replicable i modular.
+subgraph Rusc
+HX711[HX711 - Pes]
+DS18B20[DS18B20 - Temperatura]
+SHT40[SHT40 - Humitat]
+INMP441[INMP441 - So]
+IR[Sensor IR - Activitat]
+end
 
-## Arquitectura del sistema
+HX711 --> ESP32
+DS18B20 --> ESP32
+SHT40 --> ESP32
+INMP441 --> ESP32
+IR --> ESP32
 
-- Microcontrolador: ESP32
-- Sensors: HX711, DS18B20, SHT40, INMP441, sensor IR
-- Alimentació: panell solar + bateria LiPo + TP4056 + INA219
-- Comunicació: MQTT (Mosquitto) o HTTP (FastAPI)
-- Dades: InfluxDB
-- Dashboard: Grafana
+ESP32 --> MQTT[Broker MQTT]
+MQTT --> InfluxDB
+MQTT --> Alertes
 
-## Estructura del repositori
-
-\`\`\`
-ruscs-intel-ligents/
-├─ README.md
-├─ simulate.py
-├─ dashboard.py
-├─ src/
-│  ├─ main.py
-│  ├─ config_example.yaml
-│  └─ alerts.py
-├─ docs/
-│  ├─ hardware.md
-│  ├─ wiring.md
-│  ├─ data-flow.md
-│  ├─ software-architecture.md
-│  └─ simulation.md
-├─ requirements.txt
-└─ LICENSE
-\`\`\`
-
-## Quickstart (prova el projecte en 1 minut)
-
-Aquest projecte inclou un sistema complet per monitorar ruscs intel·ligents.
-Pots provar-lo sense hardware gràcies al simulador avançat i al dashboard.
-
-### 1) Clonar el repositori
-
+InfluxDB --> Grafana
+Quickstart
+1. Clonar el repositori
 git clone https://github.com/NataliaBioResearch/ruscs-intel-ligents.git
 cd ruscs-intel-ligents
-
-### 2) Instal·lar dependències
-
+2. Instal·lar dependències
 pip install -r requirements.txt
-
-### 3) Executar la simulació (sense hardware)
-
-Genera dades realistes del rusc: cicles diaris, estacionalitat, correlacions i esdeveniments especials.
-
+3. Executar la simulació
 python simulate.py
 
-Documentació completa: docs/simulation.md
+El simulador genera dades sintètiques realistes del rusc i les publica en temps real.
 
-### 4) Obrir el dashboard (visualització en temps real)
-
+4. Obrir el dashboard
 python dashboard.py
+Simulador
 
-Documentació: docs/dashboard.md
+El simulador permet provar el sistema sense necessitat de hardware.
 
-## 🐝 Simulació avançada del rusc
+Inclou:
 
-El simulador genera dades realistes del rusc sense necessitat de hardware.
-Modela cicles circadians, estacionalitat, correlacions entre sensors i esdeveniments especials (pluja, calor extrema, agitació, enjambrazó).
-Les dades es publiquen via MQTT en temps real i permeten provar el dashboard, el flux de dades i el sistema d’alertes amb un sol comandament.
+Cicles circadians.
+Variacions estacionals.
+Correlacions entre sensors.
+Esdeveniments especials:
+pluja
+onades de calor
+agitació
+possible eixamament
 
-Documentació completa: docs/simulation.md
+Documentació completa a:
 
-## Dashboard en temps real
+docs/simulation.md
+Dashboard
 
-El dashboard mostra:
+El dashboard mostra en temps real:
 
-- pes del rusc
-- temperatura interna i externa
-- humitat
-- nivell de so
-- activitat
-- consum elèctric
-- esdeveniments especials
+Pes del rusc
+Temperatura interna
+Temperatura externa
+Humitat
+Nivell de so
+Activitat
+Consum energètic
+Alertes i esdeveniments
 
-Funciona tant amb dades reals com amb la simulació.
+Compatible amb dades simulades i amb dades provinents de sensors reals.
 
-Executar:
+Hardware
 
-python dashboard.py
+Components principals:
 
-## Execució amb hardware real (opcional)
+Component	Funció
+ESP32	Controlador principal
+HX711	Sensor de pes
+DS18B20	Temperatura
+SHT40	Humitat
+INMP441	Micròfon digital
+Sensor IR	Activitat
+INA219	Monitoratge energètic
 
-El projecte està preparat per integrar sensors reals (HX711, DS18B20, SHT40, INMP441, INA219, IR).
-El fitxer main.py es pot afegir més endavant quan tinguis el firmware complet.
+Més informació a:
 
-Documentació hardware: docs/hardware.md
+docs/hardware.md
+Estructura del projecte
+ruscs-intel-ligents/
+├── README.md
+├── simulate.py
+├── dashboard.py
+├── src/
+│   ├── main.py
+│   ├── alerts.py
+│   └── config_example.yaml
+├── docs/
+│   ├── hardware.md
+│   ├── wiring.md
+│   ├── data-flow.md
+│   ├── software-architecture.md
+│   └── simulation.md
+├── requirements.txt
+└── LICENSE
+Estat del projecte
+✅ Simulador funcional
+✅ Dashboard funcional
+✅ Sistema MQTT
+✅ Sistema d'alertes
+🚧 Firmware ESP32 en desenvolupament
+🚧 Integració completa amb hardware real
+Documentació
+docs/hardware.md
+docs/wiring.md
+docs/data-flow.md
+docs/software-architecture.md
+docs/simulation.md
+Full de ruta
 
-## Instal·lació
+Millores previstes:
 
-git clone https://github.com/NataliaBioResearch/ruscs-intel-ligents.git
-cd ruscs-intel-ligents
-pip install -r requirements.txt
+Integració completa dels sensors físics.
+Persistència de dades amb InfluxDB.
+Dashboards avançats amb Grafana.
+Predicció d'anomalies amb aprenentatge automàtic.
+Aplicació web per al monitoratge remot.
+Llicència
 
-## Llicència
-
-MIT License
+Aquest projecte es distribueix sota la llicència MIT.
