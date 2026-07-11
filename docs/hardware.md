@@ -105,6 +105,32 @@ INMP441	So/vibració	I2S
 Sensor IR	Activitat	Digital
 INA219	Telemetria consum	I2C
 
+## diagrama ASCII del sistema
+                    ┌──────────────────────────┐
+                    │      Panell Solar        │
+                    └──────────────┬───────────┘
+                                   │
+                             ┌─────▼─────┐
+                             │  TP4056   │  (càrrega bateria)
+                             └─────┬─────┘
+                                   │
+                          ┌────────▼────────┐
+                          │   Bateria LiPo   │
+                          └────────┬────────┘
+                                   │
+                          ┌────────▼────────┐
+                          │      ESP32       │
+                          └────────┬────────┘
+        ┌──────────────────────────┼──────────────────────────┐
+        │                          │                          │
+   ┌────▼────┐               ┌─────▼────┐               ┌─────▼────┐
+   │  HX711  │ (pes)         │  DS18B20  │ (temp interna)│  SHT40    │ (temp/hum ext)
+   └────┬────┘               └─────┬────┘               └─────┬────┘
+        │                          │                          │
+        │                          │                          │
+   ┌────▼────┐               ┌─────▼────┐               ┌─────▼────┐
+   │ INMP441 │ (so)          │ Sensor IR │ (activitat)   │  INA219   │ (consum)
+   └─────────┘               └───────────┘               └───────────┘
 
 📎 Documents relacionats
 wiring.md
