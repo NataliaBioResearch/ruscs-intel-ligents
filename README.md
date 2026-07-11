@@ -21,6 +21,7 @@ Sistema IoT per monitorar ruscs amb ESP32 i sensors de pes, temperatura, humitat
 
 ## Estructura del repositori
 
+\`\`\`
 ruscs-intel-ligents/
 ├─ README.md
 ├─ simulate.py
@@ -37,6 +38,7 @@ ruscs-intel-ligents/
 │  └─ simulation.md
 ├─ requirements.txt
 └─ LICENSE
+\`\`\`
 
 ## Quickstart (prova el projecte en 1 minut)
 
