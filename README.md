@@ -1,9 +1,8 @@
 # ruscs-intel-ligents
-# ruscs-intel-ligents
 
 Sistema IoT per monitorar ruscs amb ESP32 i sensors de pes, temperatura, humitat, so i activitat. Inclou enviament de dades via MQTT, alertes automàtiques i integració amb InfluxDB i Grafana per anàlisi i visualització.
 
-## 🎯 Objectius
+## Objectius
 
 - Monitoratge continu del rusc (pes, temperatura interna/externa, humitat, so, activitat).
 - Enviament de dades via MQTT a un servidor o dashboard.
@@ -11,7 +10,7 @@ Sistema IoT per monitorar ruscs amb ESP32 i sensors de pes, temperatura, humitat
 - Integració amb InfluxDB + Grafana per visualització.
 - Arquitectura replicable i modular.
 
-## 🧩 Arquitectura del sistema
+## Arquitectura del sistema
 
 - Microcontrolador: ESP32
 - Sensors: HX711, DS18B20, SHT40, INMP441, sensor IR
@@ -20,7 +19,7 @@ Sistema IoT per monitorar ruscs amb ESP32 i sensors de pes, temperatura, humitat
 - Dades: InfluxDB
 - Dashboard: Grafana
 
-## 📁 Estructura del repositori
+## Estructura del repositori
 
 ruscs-intel-ligents/
 ├─ README.md
@@ -39,7 +38,7 @@ ruscs-intel-ligents/
 ├─ requirements.txt
 └─ LICENSE
 
-## 🚀 Quickstart (prova el projecte en 1 minut)
+## Quickstart (prova el projecte en 1 minut)
 
 Aquest projecte inclou un sistema complet per monitorar ruscs intel·ligents.
 Pots provar-lo sense hardware gràcies al simulador avançat i al dashboard.
@@ -75,7 +74,7 @@ Les dades es publiquen via MQTT en temps real i permeten provar el dashboard, el
 
 Documentació completa: docs/simulation.md
 
-## 📊 Dashboard en temps real
+## Dashboard en temps real
 
 El dashboard mostra:
 
@@ -93,19 +92,19 @@ Executar:
 
 python dashboard.py
 
-## 🔧 Execució amb hardware real (opcional)
+## Execució amb hardware real (opcional)
 
 El projecte està preparat per integrar sensors reals (HX711, DS18B20, SHT40, INMP441, INA219, IR).
 El fitxer main.py es pot afegir més endavant quan tinguis el firmware complet.
 
 Documentació hardware: docs/hardware.md
 
-## 📜 Instal·lació
+## Instal·lació
 
 git clone https://github.com/NataliaBioResearch/ruscs-intel-ligents.git
 cd ruscs-intel-ligents
 pip install -r requirements.txt
 
-## 📄 Llicència
+## Llicència
 
 MIT License
