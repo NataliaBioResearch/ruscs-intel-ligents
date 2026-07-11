@@ -1,7 +1,7 @@
 # ruscs-intel-ligents
 Sistema IoT per monitorar ruscs amb ESP32 i sensors de pes, temperatura, humitat, so i activitat. Inclou enviament de dades via MQTT, alertes automàtiques i integració amb InfluxDB i Grafana per anàlisi i visualització.
 
-🎯 objectius
+🎯 Objectius
 Monitoratge continu del rusc (pes, temperatura interna/externa, humitat, so, activitat).
 
 Enviament de dades via MQTT a un servidor o dashboard.
@@ -12,7 +12,7 @@ Integració amb InfluxDB + Grafana per visualització.
 
 Arquitectura replicable i modular.
 
-🧩 arquitectura del sistema
+🧩 Arquitectura del sistema
 Microcontrolador: ESP32
 
 Sensors: HX711, DS18B20, SHT40, INMP441, sensor IR
@@ -25,14 +25,14 @@ Dades: InfluxDB
 
 Dashboard: Grafana
 
-📁 estructura del repositori
+📁 Estructura del repositori
 Código
 ruscs-intel-ligents/
 ├─ README.md
 ├─ simulate.py
 ├─ dashboard.py
 ├─ src/
-│  ├─ main.py        (opcional, futur firmware real)
+│  ├─ main.py
 │  ├─ config_example.yaml
 │  └─ alerts.py
 ├─ docs/
@@ -102,10 +102,10 @@ El fitxer main.py es pot afegir més endavant quan tinguis el firmware complet.
 
 Documentació hardware: docs/hardware.md
 
-📜 instal·lació
+📜 Instal·lació
 Código
 git clone https://github.com/NataliaBioResearch/ruscs-intel-ligents.git
 cd ruscs-intel-ligents
 pip install -r requirements.txt
-📄 llicència
+📄 Llicència
 MIT License
