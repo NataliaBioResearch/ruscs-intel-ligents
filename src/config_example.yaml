@@ -1,0 +1,35 @@
+mqtt:
+  host: "192.168.1.50"        # IP del servidor MQTT (Mosquitto)
+  port: 1883                  # port per defecte
+  topic_base: "rusc/A1"       # identificador del rusc
+
+general:
+  interval_seconds: 10        # interval de lectura dels sensors
+
+sensors:
+  hx711:
+    scale_ratio: 2280         # factor de calibració del pes
+
+  ds18b20:
+    pin: 2                    # GPIO del bus 1-Wire
+
+  dht22:
+    pin: 4                    # GPIO del sensor DHT22
+
+  sht40:
+    sda: 21                   # bus I2C
+    scl: 22
+
+  inmp441:
+    dout: 34                  # bus I2S
+    ws: 25
+    sck: 26
+
+alerts:
+  weight_low: 5               # kg — alerta de pes baix
+  temp_internal_low: 32       # °C — cria en risc
+  temp_internal_high: 38      # °C — sobreescalfament
+  temp_external_low: -5       # °C — clima extrem
+  temp_external_high: 40      # °C — calor extrema
+  humidity_low: 20            # % — sequera
+  humidity_high: 90           # % — risc de fongs
