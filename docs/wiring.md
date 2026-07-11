@@ -121,6 +121,7 @@ Sensor IR	Digital	GPIO 27
 INA219	I2C	GPIO 21, 22
 
 # diagrama ASCII del wiring
+<pre>
                         ┌──────────────────────────┐
                         │        Panell Solar      │
                         └──────────────┬───────────┘
@@ -146,12 +147,13 @@ INA219	I2C	GPIO 21, 22
    SCK  → GPIO 4                  4.7kΩ pull-up                 SCL → GPIO 22
         │                              │                              │
         │                              │                              │
-   ┌────▼────┐                    ┌────▼────┐                    ┌────▼────┐
+   ┌────▼────┐                    ┌────▼─────┐                   ┌────▼─────┐
    │ INMP441 │                    │ Sensor IR│                   │  INA219  │
    └─────────┘                    └──────────┘                   └──────────┘
    DOUT → GPIO 34                 OUT → GPIO 27                  SDA/SCL → I2C
    WS   → GPIO 25
    SCK  → GPIO 26
+</pre>
 
 📎 documents relacionats
 hardware — llistat complet de maquinari
