@@ -1,15 +1,15 @@
-# 🤝 Contributing Guide
+# Contributing Guide
 
 Gràcies per voler contribuir al projecte **Rusc Intel·ligent**.  
 Aquest document explica com col·laborar de manera eficient, clara i coherent amb l’estil del repositori.
 
-> 🔗 **Enllaç des del README:**  
+> **Enllaç des del README:**  
 > Si estàs llegint això des del README, pots tornar-hi aquí:  
 > [Torna al README](README.md)
 
 ---
 
-## 📑 Taula de continguts
+## Taula de continguts
 - [Visió general](#visió-general)
 - [Com començar](#com-començar)
 - [Estructura del repositori](#estructura-del-repositori)
@@ -23,7 +23,7 @@ Aquest document explica com col·laborar de manera eficient, clara i coherent am
 
 ---
 
-## 🌐 Visió general
+## Visió general
 
 El projecte **Rusc Intel·ligent** combina:
 - Simulació OO avançada  
@@ -38,7 +38,7 @@ L’objectiu és crear una plataforma modular, escalable i científica per monit
 
 ---
 
-## 🚀 Com començar
+## Com començar
 
 1. Fes un **fork** del repositori.
 2. Clona el teu fork:
@@ -63,7 +63,7 @@ pip install -r requirements.txt
 
 ---
 
-## 📁 Estructura del repositori
+## Estructura del repositori
 
 ```text
 rusc-intel-ligent/
@@ -87,7 +87,7 @@ rusc-intel-ligent/
 
 ---
 
-## 🔀 Flux de treball amb Git
+## Flux de treball amb Git
 
 ### 1. Crea una branca nova
 
@@ -130,7 +130,7 @@ Inclou:
 
 ---
 
-## 🎨 Estil de codi
+## Estil de codi
 
 - Python 3.10+  
 - PEP8  
@@ -142,7 +142,7 @@ Inclou:
 
 ---
 
-## 🧪 Tests
+## Tests
 
 ### Executar tests
 
@@ -166,7 +166,7 @@ Objectiu de cobertura:
 
 ---
 
-## 📬 Pull Requests
+## Pull Requests
 
 Les PRs han de:
 
@@ -183,7 +183,7 @@ Les PRs grans han d’incloure:
 
 ---
 
-## 🧩 Normes per afegir funcionalitats
+## Normes per afegir funcionalitats
 
 ### Simulador
 - No afegir dependències innecessàries  
@@ -207,7 +207,7 @@ Les PRs grans han d’incloure:
 
 ---
 
-## 🛣️ Roadmap tècnic
+## Roadmap tècnic
 
 - [x] Simulador OO complet  
 - [x] Dashboard Streamlit  
@@ -221,7 +221,7 @@ Les PRs grans han d’incloure:
 
 ---
 
-## 🛡️ Codi de conducta
+## Codi de conducta
 
 Aquest projecte promou:
 
@@ -239,7 +239,7 @@ No s’accepten:
 
 ---
 
-## 🙌 Gràcies!
+## Gràcies!
 
 Cada contribució fa el projecte més robust, útil i científic.  
 Estem encantats de rebre millores, idees i correccions.
