@@ -46,17 +46,26 @@ L’objectiu és crear una plataforma modular, escalable i científica per monit
 ```bash
 git clone https://github.com/EL_TEU_USUARI/rusc-intel-ligent.git
 cd rusc-intel-ligent
-Crea un entorn virtual:
+```
 
-bash
+3. Crea un entorn virtual:
+
+```bash
 python3 -m venv venv
 source venv/bin/activate
-Instal·la dependències:
+```
 
-bash
+4. Instal·la dependències:
+
+```bash
 pip install -r requirements.txt
-📁 Estructura del repositori
-text
+```
+
+---
+
+## 📁 Estructura del repositori
+
+```text
 rusc-intel-ligent/
 │
 ├── simulate.py            # Simulador OO complet
@@ -74,165 +83,163 @@ rusc-intel-ligent/
 │   └── utils.py
 │
 └── tests/                 # Tests automàtics
-🔀 Flux de treball amb Git
-1. Crea una branca nova
-bash
+```
+
+---
+
+## 🔀 Flux de treball amb Git
+
+### 1. Crea una branca nova
+
+```bash
 git checkout -b feature/nom-de-la-millora
-2. Fes commits petits i clars
+```
+
+### 2. Fes commits petits i clars
+
 Prefixos recomanats:
 
-feat: nova funcionalitat
-
-fix: correcció d’error
-
-docs: documentació
-
-test: afegir o millorar tests
-
-refactor: millora interna
-
-perf: optimització
-
-ci: canvis a GitHub Actions
+- `feat:` nova funcionalitat  
+- `fix:` correcció d’error  
+- `docs:` documentació  
+- `test:` afegir o millorar tests  
+- `refactor:` millora interna  
+- `perf:` optimització  
+- `ci:` canvis a GitHub Actions  
 
 Exemple:
 
-bash
+```bash
 feat: afegir suport multi-rusc al simulador
-3. Puja la branca
-bash
+```
+
+### 3. Puja la branca
+
+```bash
 git push origin feature/nom-de-la-millora
-4. Obre una Pull Request
+```
+
+### 4. Obre una Pull Request
+
 Inclou:
 
-Descripció clara
+- Descripció clara  
+- Motivació  
+- Com provar-ho  
+- Captures o logs si cal  
 
-Motivació
+---
 
-Com provar-ho
+## 🎨 Estil de codi
 
-Captures o logs si cal
+- Python 3.10+  
+- PEP8  
+- Noms en `snake_case`  
+- Classes en `CamelCase`  
+- Funcions curtes i modulars  
+- Evitar duplicació de codi  
+- Documentar funcions importants  
 
-🎨 Estil de codi
-Python 3.10+
+---
 
-PEP8
+## 🧪 Tests
 
-Noms en snake_case
+### Executar tests
 
-Classes en CamelCase
-
-Funcions curtes i modulars
-
-Evitar duplicació de codi
-
-Documentar funcions importants
-
-🧪 Tests
-Executar tests
-bash
+```bash
 pytest -v
-Afegir tests nous
+```
+
+### Afegir tests nous
+
 Cada funcionalitat nova ha d’incloure:
 
-tests positius
-
-tests negatius
-
-tests d’errors esperats
+- tests positius  
+- tests negatius  
+- tests d’errors esperats  
 
 Objectiu de cobertura:
 
-text
+```text
 > 85%
-📬 Pull Requests
+```
+
+---
+
+## 📬 Pull Requests
+
 Les PRs han de:
 
-Ser petites i enfocades
-
-No trencar funcionalitats existents
-
-Incloure tests si cal
-
-Incloure documentació si afecta a l’usuari
+- Ser petites i enfocades  
+- No trencar funcionalitats existents  
+- Incloure tests si cal  
+- Incloure documentació si afecta a l’usuari  
 
 Les PRs grans han d’incloure:
 
-Diagrama de flux
+- Diagrama de flux  
+- Notes de migració  
+- Justificació tècnica  
 
-Notes de migració
+---
 
-Justificació tècnica
+## 🧩 Normes per afegir funcionalitats
 
-🧩 Normes per afegir funcionalitats
-Simulador
-No afegir dependències innecessàries
+### Simulador
+- No afegir dependències innecessàries  
+- Mantenir el model matemàtic modular  
+- Perfils nous → `profiles/`  
+- Anomalies noves → `anomalies/`  
 
-Mantenir el model matemàtic modular
+### Dashboard
+- Gràfics nous → pestanyes noves  
+- No saturar la UI  
+- Mantenir compatibilitat amb dades reals  
 
-Perfils nous → profiles/
+### InfluxDB
+- Mesures noves → documentar a `docs/dashboard.md`  
+- Tags obligatoris: `rusc_id`  
 
-Anomalies noves → anomalies/
+### IA acústica
+- Models → `models/acoustic/`  
+- Dataset → `data/acoustic/`  
+- Documentació → `docs/acoustic.md`  
 
-Dashboard
-Gràfics nous → pestanyes noves
+---
 
-No saturar la UI
+## 🛣️ Roadmap tècnic
 
-Mantenir compatibilitat amb dades reals
+- [x] Simulador OO complet  
+- [x] Dashboard Streamlit  
+- [x] Documentació Grafana/InfluxDB  
+- [ ] Multi-rusc  
+- [ ] InfluxDB real  
+- [ ] Alertes ML  
+- [ ] IA acústica  
+- [ ] API REST  
+- [ ] App mòbil  
 
-InfluxDB
-Mesures noves → documentar a docs/dashboard.md
+---
 
-Tags obligatoris: rusc_id
+## 🛡️ Codi de conducta
 
-IA acústica
-Models → models/acoustic/
-
-Dataset → data/acoustic/
-
-Documentació → docs/acoustic.md
-
-🛣️ Roadmap tècnic
-[x] Simulador OO complet
-
-[x] Dashboard Streamlit
-
-[x] Documentació Grafana/InfluxDB
-
-[ ] Multi-rusc
-
-[ ] InfluxDB real
-
-[ ] Alertes ML
-
-[ ] IA acústica
-
-[ ] API REST
-
-[ ] App mòbil
-
-🛡️ Codi de conducta
 Aquest projecte promou:
 
-Respecte
-
-Col·laboració
-
-Inclusió
-
-Comunicació clara
+- Respecte  
+- Col·laboració  
+- Inclusió  
+- Comunicació clara  
 
 No s’accepten:
 
-Comentaris ofensius
+- Comentaris ofensius  
+- Assetjament  
+- Discriminació  
+- Abús de poder  
 
-Assetjament
+---
 
-Discriminació
+## 🙌 Gràcies!
 
-Abús de poder
-
-🙌 Gràcies!
-Cada contribució fa el projecte més robust, útil i científic.
+Cada contribució fa el projecte més robust, útil i científic.  
 Estem encantats de rebre millores, idees i correccions.
