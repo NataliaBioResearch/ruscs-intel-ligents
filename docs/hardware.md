@@ -1,4 +1,4 @@
-# hardware del rusc intel·ligent
+hardware del rusc intel·ligent
 Aquest document descriu tot el maquinari necessari per muntar un rusc intel·ligent basat en ESP32, sensors IoT i alimentació solar. Inclou especificacions, recomanacions, esquema conceptual i notes de muntatge.
 
 🔌 Microcontrolador — ESP32
@@ -10,7 +10,7 @@ Suport per I2C, ADC, 1-Wire
 
 Ideal per lectura de sensors i enviament MQTT
 
-Alternativa: Raspberry Pi Zero W (més potència, més consum).
+Alternativa: Raspberry Pi Zero W (més potència, més consum)
 
 ⚖️ Pes — HX711 + cèl·lula de càrrega 50–100 kg
 Mesura el pes del rusc i la producció de mel
@@ -86,7 +86,7 @@ TP4056 per càrrega segura
 
 INA219 per monitoratge de consum
 
-🧵 Cablejat i protecció — Bones_pràctiques_cablejat
+🧵 Cablejat i protecció — Bones pràctiques
 Tub corrugat
 
 Termo-retràctil
@@ -105,8 +105,9 @@ INMP441	So/vibració	I2S
 Sensor IR	Activitat	Digital
 INA219	Telemetria consum	I2C
 
-## diagrama ASCII del sistema
-<pre>
+
+Diagrama ASCII del sistema
+Código
                     ┌──────────────────────────┐
                     │      Panell Solar        │
                     └──────────────┬───────────┘
@@ -132,11 +133,17 @@ INA219	Telemetria consum	I2C
    ┌────▼────┐               ┌─────▼────┐               ┌─────▼────┐
    │ INMP441 │ (so)          │ Sensor IR│ (activitat)   │  INA219  │ (consum)
    └─────────┘               └──────────┘               └──────────┘
-</pre>
 📎 Documents relacionats
 wiring.md
 
+software-architecture.md
+
+data-flow.md
+
+simulation.md
+
 dashboard.md
+
 main.py
 
 alerts.py
