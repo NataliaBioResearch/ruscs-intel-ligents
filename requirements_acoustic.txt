@@ -13,6 +13,7 @@ seaborn
 librosa
 soundfile
 pydub
+ffmpeg-python
 
 # ─────────────────────────────────────────────
 # MACHINE LEARNING / DEEP LEARNING
@@ -27,11 +28,6 @@ xgboost
 fastapi
 uvicorn
 python-dotenv
-
-# ─────────────────────────────────────────────
-# STREAMING AUDIO (Opus → PCM via ffmpeg)
-# ─────────────────────────────────────────────
-ffmpeg-python
 
 # ─────────────────────────────────────────────
 # INFLUXDB + MONITORING
