@@ -1,0 +1,62 @@
+site_name: Ruscs Intel·ligents
+site_description: Documentació tècnica del sistema de monitoratge de ruscs intel·ligents
+site_author: Gaia Ràfols
+repo_url: https://github.com/gaia/ruscs-intel-ligents
+repo_name: ruscs-intel-ligents
+
+theme:
+  name: material
+  language: ca
+  features:
+    - navigation.instant
+    - navigation.sections
+    - navigation.expand
+    - navigation.tabs
+    - content.code.copy
+    - content.code.annotate
+    - content.action.edit
+    - search.suggest
+    - search.highlight
+    - search.share
+  palette:
+    - scheme: default
+      primary: teal
+      accent: amber
+    - scheme: slate
+      primary: teal
+      accent: amber
+
+markdown_extensions:
+  - admonition
+  - toc:
+      permalink: true
+  - tables
+  - footnotes
+  - def_list
+  - attr_list
+  - md_in_html
+  - pymdownx.superfences
+  - pymdownx.highlight
+  - pymdownx.details
+  - pymdownx.tabbed
+  - pymdownx.emoji
+  - pymdownx.tasklist
+  - pymdownx.arithmatex
+  - pymdownx.snippets
+  - pymdownx.inlinehilite
+
+nav:
+  - Inici: index.md
+  - Hardware:
+      - Maquinari del rusc: hardware.md
+      - Connexions i wiring: wiring.md
+  - Arquitectura:
+      - Arquitectura del software: software-architecture.md
+      - Flux de dades: data-flow.md
+      - Simulació del sistema: simulation.md
+  - Backend:
+      - Backend general: backend.md
+      - Processament acústic: acoustic.md
+      - Alertes: alerts.md
+  - Dashboard:
+      - Dashboard Streamlit: dashboard.md
