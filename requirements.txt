@@ -1,6 +1,0 @@
-paho-mqtt
-PyYAML
-adafruit-circuitpython-dht
-adafruit-circuitpython-onewire
-adafruit-circuitpython-ds18x20
-hx711

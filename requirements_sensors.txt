@@ -1,0 +1,13 @@
+# ─────────────────────────────────────────────
+# SENSORS FÍSICS DEL RUSC
+# ─────────────────────────────────────────────
+paho-mqtt
+PyYAML
+
+# Sensors Adafruit (DHT22, DS18B20)
+adafruit-circuitpython-dht
+adafruit-circuitpython-onewire
+adafruit-circuitpython-ds18x20
+
+# Cèl·lula de càrrega HX711
+hx711
