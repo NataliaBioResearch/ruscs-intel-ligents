@@ -1,0 +1,98 @@
+Estructura recomanada del directori
+Código
+data/
+├── meteo/
+│   ├── meteo_raw.json
+│   ├── meteo_clean.csv
+│   ├── temperature_external.csv
+│   ├── humidity_external.csv
+│   ├── wind_speed.csv
+│   ├── rain_mm.csv
+│   ├── pressure.csv
+│   └── meteo_combined.csv   (opcional)
+Formats recomanats
+meteo_raw.json
+Resposta directa de l’API (OpenWeather o similar):
+
+json
+{
+  "timestamp": "2026-07-15T07:51:00Z",
+  "temp": 29.1,
+  "humidity": 64,
+  "wind": 3.2,
+  "rain_1h": 0.0,
+  "pressure": 1013
+}
+meteo_clean.csv
+Código
+timestamp,temp_c,humidity_pct,wind_ms,rain_mm,pressure_hpa
+2026-07-15T07:51:00Z,29.1,64,3.2,0.0,1013
+2026-07-15T07:52:00Z,29.2,63,3.4,0.0,1012
+Fitxers individuals (si vols modularitat)
+temperature_external.csv
+Código
+timestamp,temp_c
+2026-07-15T07:51:00Z,29.1
+wind_speed.csv
+Código
+timestamp,wind_ms
+2026-07-15T07:51:00Z,3.2
+rain_mm.csv
+Código
+timestamp,rain_mm
+2026-07-15T07:51:00Z,0.0
+Codi d’ingestió recomanat (ns_meteo/meteo_fetch.py)
+python
+import pandas as pd
+import os
+
+DATA_DIR = os.path.join(
+    os.path.dirname(os.path.dirname(__file__)),
+    "data",
+    "meteo"
+)
+
+def load_meteo_csv(filename):
+    path = os.path.join(DATA_DIR, filename)
+    if not os.path.exists(path):
+        raise FileNotFoundError(f"No s'ha trobat el fitxer: {path}")
+    return pd.read_csv(path)
+
+def load_meteo_all():
+    return {
+        "temp": load_meteo_csv("temperature_external.csv"),
+        "humidity": load_meteo_csv("humidity_external.csv"),
+        "wind": load_meteo_csv("wind_speed.csv"),
+        "rain": load_meteo_csv("rain_mm.csv"),
+        "pressure": load_meteo_csv("pressure.csv")
+    }
+Integració amb ns_meteo/meteo_features.py
+python
+def compute_meteo_features(df):
+    df["temp_trend"] = df["temp_c"].diff()
+    df["humidity_trend"] = df["humidity_pct"].diff()
+    df["wind_trend"] = df["wind_ms"].diff()
+    df["rain_accum"] = df["rain_mm"].rolling(6).sum()
+    return df
+Documentació recomanada per MkDocs (docs/data-flow.md)
+md
+## Dades meteorològiques
+
+El directori `data/meteo/` conté les mesures meteorològiques utilitzades pel sistema:
+
+- temperatura externa
+- humitat externa
+- velocitat del vent
+- pluja acumulada
+- pressió atmosfèrica
+
+Aquestes dades s’utilitzen per:
+
+- alertes meteorològiques (ns_meteo/)
+- correlacions amb sensors i acústica (ns_correlations/)
+- models ML com l’estrès tèrmic (ns_ml/)
+- visualització al dashboard (ns_dashboard/)
+
+Format:
+- JSON cru de l’API
+- CSV netejat amb timestamp ISO8601
