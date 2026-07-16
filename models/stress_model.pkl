@@ -1,0 +1,87 @@
+Codi recomanat per ns_ml/model_stress.py
+python
+import os
+import pickle
+import numpy as np
+
+MODEL_PATH = os.path.join(
+    os.path.dirname(os.path.dirname(__file__)),
+    "models",
+    "stress_model.pkl"
+)
+
+def load_stress_model():
+    """
+    Carrega el model d'estrès tèrmic entrenat (pickle).
+    Retorna:
+        model (sklearn estimator): model carregat llest per inferència.
+    """
+    if not os.path.exists(MODEL_PATH):
+        raise FileNotFoundError(f"Model no trobat: {MODEL_PATH}")
+
+    with open(MODEL_PATH, "rb") as f:
+        model = pickle.load(f)
+
+    return model
+Inferència recomanada (predict_stress)
+python
+MODEL = load_stress_model()
+
+def predict_stress(temp_interna, temp_externa, humitat, tend_temp, tend_hum):
+    """
+    Predicció d'estrès tèrmic basada en telemetria i tendències.
+
+    Args:
+        temp_interna (float)
+        temp_externa (float)
+        humitat (float)
+        tend_temp (float): tendència de temperatura interna (derivada)
+        tend_hum (float): tendència d'humitat interna
+
+    Retorna:
+        float: probabilitat d'estrès tèrmic (0–1)
+    """
+
+    features = np.array([
+        temp_interna,
+        temp_externa,
+        humitat,
+        tend_temp,
+        tend_hum
+    ]).reshape(1, -1)
+
+    prob = MODEL.predict_proba(features)[0][1]
+    return float(prob)
+Integració amb alerts_ml.py
+python
+from .model_stress import predict_stress
+
+def generate_stress_alert(temp_interna, temp_externa, humitat, tend_temp, tend_hum):
+    prob = predict_stress(temp_interna, temp_externa, humitat, tend_temp, tend_hum)
+
+    if prob > 0.75:
+        return {"tipus": "stress_termic", "severitat": "critica", "prob": prob}
+    elif prob > 0.50:
+        return {"tipus": "stress_termic", "severitat": "moderada", "prob": prob}
+    else:
+        return {"tipus": "stress_termic", "severitat": "baixa", "prob": prob}
+Documentació recomanada dins MkDocs
+A docs/acoustic.md no cal afegir res, però sí a docs/alerts.md o docs/data-flow.md:
+
+md
+## Model d’estrès tèrmic
+
+El sistema utilitza el model `stress_model.pkl` per predir estrès tèrmic a partir de:
+
+- temperatura interna
+- temperatura externa
+- humitat
+- tendències de temperatura i humitat
+
+Aquest model s’integra amb:
+
+- `ns_ml/model_stress.py` (càrrega i inferència)
+- `ns_ml/alerts_ml.py` (alertes d’estrès tèrmic)
+
+Sortida:
+- Probabilitat d’estrès tèrmic (0–1)
