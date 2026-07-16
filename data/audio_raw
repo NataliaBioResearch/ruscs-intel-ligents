@@ -1,0 +1,94 @@
+Estructura recomanada del directori
+Código
+data/
+├── audio_raw/
+│   ├── opus/
+│   │   ├── 2026-07-15T07-51-00Z.opus
+│   │   ├── 2026-07-15T07-51-20Z.opus
+│   │   └── ...
+│   ├── raw_i2s/
+│   │   ├── 2026-07-15T07-51-00Z.raw
+│   │   └── ...
+│   └── metadata.csv
+Formats recomanats
+1. Fitxers Opus (opus/*.opus)
+Són els blocs enviats per l’ESP32:
+
+20–40 ms
+
+mono
+
+16 kHz
+
+32 bits float
+
+compressió Opus
+
+2. Fitxers RAW I2S (raw_i2s/*.raw)
+Només si vols guardar l’àudio abans de la codificació Opus.
+
+Format típic:
+
+32 bits
+
+mono
+
+sense cap header (raw)
+
+3. Metadata (metadata.csv)
+Código
+timestamp,src_file,duration_ms,device_id
+2026-07-15T07:51:00Z,opus/2026-07-15T07-51-00Z.opus,20,RUSC_01
+Codi d’ingestió recomanat (ns_device/backend_audio.py)
+python
+import os
+import numpy as np
+
+BASE_DIR = os.path.join(
+    os.path.dirname(os.path.dirname(__file__)),
+    "data",
+    "audio_raw"
+)
+
+def load_opus(timestamp):
+    path = os.path.join(BASE_DIR, "opus", f"{timestamp}.opus")
+    if not os.path.exists(path):
+        raise FileNotFoundError(f"No s'ha trobat el fitxer: {path}")
+    with open(path, "rb") as f:
+        return f.read()
+
+def load_raw_i2s(timestamp):
+    path = os.path.join(BASE_DIR, "raw_i2s", f"{timestamp}.raw")
+    if not os.path.exists(path):
+        raise FileNotFoundError(f"No s'ha trobat el fitxer: {path}")
+    return np.fromfile(path, dtype=np.float32)
+Integració amb el pipeline acústic
+backend_audio.py → decodificació Opus
+python
+opus_bytes = load_opus(ts)
+pcm = decode_opus_to_pcm(opus_bytes)
+audio_processed/ → espectrogrames
+python
+mel = compute_mel_spectrogram(pcm, sr=16000)
+np.save("data/audio_processed/mel/<ts>.npy", mel)
+Documentació recomanada per MkDocs (docs/data-flow.md)
+md
+## Àudio cru
+
+El directori `data/audio_raw/` conté l’àudio original capturat pels dispositius del rusc:
+
+- blocs Opus enviats per l’ESP32
+- opcionalment blocs RAW I2S sense processar
+- metadades amb timestamps i identificador del rusc
+
+Aquestes dades s’utilitzen per:
+
+- decodificació Opus → PCM (backend_audio.py)
+- generació d’espectrogrames (ns_acoustic/features.py)
+- entrenament i validació del model CRNN (ns_training/)
+- reproducció d’escenaris acústics reals
+
+Format:
+- `.opus` per a l’àudio comprimit
+- `.raw` per a l’àudio I2S sense processar
+- `.csv` per a metadades
