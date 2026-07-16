@@ -1,0 +1,89 @@
+Estructura recomanada del directori
+Código
+data/
+├── audio_processed/
+│   ├── pcm/
+│   │   ├── 2026-07-15T07-51-00Z.npy
+│   │   ├── 2026-07-15T07-51-20Z.npy
+│   │   └── ...
+│   ├── mel/
+│   │   ├── 2026-07-15T07-51-00Z.npy
+│   │   ├── 2026-07-15T07-51-20Z.npy
+│   │   └── ...
+│   ├── spectrogram_png/
+│   │   ├── 2026-07-15T07-51-00Z.png
+│   │   └── ...
+│   └── metadata.csv
+Formats recomanats
+1. PCM preprocessat (pcm/*.npy)
+Conté blocs PCM float32:
+
+python
+np.save("2026-07-15T07-51-00Z.npy", audio_pcm)
+2. Espectrogrames Mel (mel/*.npy)
+128×128 normalitzats:
+
+python
+np.save("2026-07-15T07-51-00Z.npy", mel_spectrogram)
+3. Espectrogrames en PNG (spectrogram_png/*.png)
+Per validació visual i dashboards.
+
+4. Metadata (metadata.csv)
+Código
+timestamp,src_file,duration_ms,mean,std,max
+2026-07-15T07:51:00Z,raw/2026-07-15T07-51-00Z.opus,20000,0.0021,0.031,0.87
+Codi d’ingestió recomanat (ns_acoustic/audio_loader.py)
+python
+import os
+import numpy as np
+import pandas as pd
+
+BASE_DIR = os.path.join(
+    os.path.dirname(os.path.dirname(__file__)),
+    "data",
+    "audio_processed"
+)
+
+def load_pcm(timestamp):
+    path = os.path.join(BASE_DIR, "pcm", f"{timestamp}.npy")
+    return np.load(path)
+
+def load_mel(timestamp):
+    path = os.path.join(BASE_DIR, "mel", f"{timestamp}.npy")
+    return np.load(path)
+
+def load_metadata():
+    path = os.path.join(BASE_DIR, "metadata.csv")
+    return pd.read_csv(path)
+Integració amb el pipeline acústic
+pipeline_acoustic.py pot fer:
+python
+pcm = load_pcm(timestamp)
+mel = compute_mel_spectrogram(pcm, sr=16000)
+preds = crnn_predict(pcm)
+ns_training/ pot fer:
+python
+mel = load_mel(ts)
+model.fit(mel, labels)
+Documentació recomanada per MkDocs (docs/data-flow.md)
+md
+## Àudio preprocessat
+
+El directori `data/audio_processed/` conté l’àudio ja preparat per al subsistema acústic:
+
+- blocs PCM float32
+- espectrogrames Mel 128×128
+- espectrogrames PNG per validació visual
+- metadades del processament
+
+Aquestes dades s’utilitzen per:
+
+- entrenament del model CRNN (ns_training/)
+- inferència acústica (ns_acoustic/)
+- validació del pipeline
+- dashboards acústics
+
+Format:
+- `.npy` per a dades numèriques
+- `.png` per a visualització
+- `.csv` per a metadades
