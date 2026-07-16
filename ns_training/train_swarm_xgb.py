@@ -21,3 +21,6 @@ def train_swarm_xgb(data_csv, model_out):
 
     model = xgb.train(params, dtrain, num_boost_round=300)
     model.save_model(model_out)
+from ns_dashboard.plots_ml import plot_xgb_feature_importance
+
+plot_xgb_feature_importance("models/swarm_xgb.json")
