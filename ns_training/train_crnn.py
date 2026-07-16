@@ -47,3 +47,9 @@ def main():
     model.save("models/crnn_real_trained.h5")
 if __name__ == "__main__":
     main()
+history = model.fit(dataset, epochs=10)
+
+from ns_dashboard.plots_ml import plot_crnn_training, plot_crnn_accuracy
+
+plot_crnn_training(history)
+plot_crnn_accuracy(history)
