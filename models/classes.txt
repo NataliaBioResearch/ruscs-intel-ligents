@@ -1,0 +1,5 @@
+vespa
+estres
+enjambrament
+agitacio
+soroll_anomal
