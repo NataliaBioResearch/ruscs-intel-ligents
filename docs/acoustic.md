@@ -86,13 +86,13 @@ Aquest model es troba al directori:
 
 Código
 models/crnn_real.h5
-Aquest model s’integra amb els mòduls del namespace ns_acoustic:
+Aquest model s’integra amb:
 
-ns_acoustic/crnn_model.py — càrrega del model
+ns_acoustic/crnn_model.py — càrrega
 
-ns_acoustic/crnn_inference.py — inferència i preprocessament
+ns_acoustic/crnn_inference.py — inferència
 
-ns_acoustic/pipeline_acoustic.py — pipeline complet (features → CRNN → alertes)
+ns_acoustic/pipeline_acoustic.py — pipeline complet
 
 📥 Entrada del model
 Espectrograma Mel 128×128
@@ -102,7 +102,7 @@ Normalitzat min-max
 Canal únic (mono)
 
 📤 Sortida del model
-Vector de probabilitats per a cada classe acústica:
+Vector de probabilitats per:
 
 vespa
 
