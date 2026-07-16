@@ -1,0 +1,83 @@
+Format recomanat dels fitxers
+weight.csv
+Código
+timestamp,weight_kg
+2026-07-15T07:51:00Z,42.3
+2026-07-15T07:52:00Z,42.4
+temperature_internal.csv
+Código
+timestamp,temp_c
+2026-07-15T07:51:00Z,35.2
+2026-07-15T07:52:00Z,35.3
+humidity.csv
+Código
+timestamp,humidity_pct
+2026-07-15T07:51:00Z,68.1
+2026-07-15T07:52:00Z,68.3
+sensors_combined.csv (si vols un únic fitxer)
+Código
+timestamp,weight,temp_in,temp_out,humidity,power,activity
+2026-07-15T07:51:00Z,42.3,35.2,29.1,68.1,0.12,0.87
+Codi recomanat per ingestió (ns_device/backend_sensors.py)
+python
+import pandas as pd
+import os
+
+DATA_DIR = os.path.join(
+    os.path.dirname(os.path.dirname(__file__)),
+    "data",
+    "sensors"
+)
+
+def load_sensor_data(filename):
+    path = os.path.join(DATA_DIR, filename)
+    if not os.path.exists(path):
+        raise FileNotFoundError(f"No s'ha trobat el fitxer: {path}")
+    return pd.read_csv(path)
+
+def load_all_sensors():
+    return {
+        "weight": load_sensor_data("weight.csv"),
+        "temp_internal": load_sensor_data("temperature_internal.csv"),
+        "temp_external": load_sensor_data("temperature_external.csv"),
+        "humidity": load_sensor_data("humidity.csv"),
+        "power": load_sensor_data("power.csv"),
+        "activity": load_sensor_data("activity.csv")
+    }
+Integració amb correlacions (ns_correlations/corr_engine.py)
+python
+from ns_device.backend_sensors import load_all_sensors
+
+def compute_correlations():
+    sensors = load_all_sensors()
+    df = sensors["weight"].merge(
+        sensors["temp_internal"], on="timestamp"
+    ).merge(
+        sensors["humidity"], on="timestamp"
+    )
+
+    return df.corr()
+Documentació recomanada per MkDocs (docs/data-flow.md)
+md
+## Dades de sensors
+
+El directori `data/sensors/` conté les mesures físiques del rusc:
+
+- pes del rusc
+- temperatura interna
+- temperatura externa
+- humitat
+- consum elèctric
+- activitat
+
+Aquestes dades s’utilitzen per:
+
+- correlacions (ns_correlations/)
+- models ML (ns_ml/)
+- validació del pipeline (ns_training/)
+- generació d’alertes (ns_device/, ns_monitoring/)
+- visualització al dashboard (ns_dashboard/)
+
+Format:
+- CSV amb timestamp ISO8601
+- Una mesura per línia
