@@ -1,0 +1,105 @@
+Codi recomanat per ns_ml/model_swarm_xgb.py
+python
+import os
+import xgboost as xgb
+import numpy as np
+
+MODEL_PATH = os.path.join(
+    os.path.dirname(os.path.dirname(__file__)),
+    "models",
+    "swarm_xgb.json"
+)
+
+def load_swarm_model():
+    """
+    Carrega el model XGBoost d'enjambrament.
+    Retorna:
+        booster (xgb.Booster): model carregat llest per inferència.
+    """
+    if not os.path.exists(MODEL_PATH):
+        raise FileNotFoundError(f"Model no trobat: {MODEL_PATH}")
+
+    booster = xgb.Booster()
+    booster.load_model(MODEL_PATH)
+    return booster
+Inferència recomanada (predict_swarm)
+python
+MODEL = load_swarm_model()
+
+def predict_swarm(
+    weight,
+    weight_trend,
+    sound_trend,
+    acoustic_swarm_prob,
+    temp_interna,
+    temp_externa,
+    humidity,
+    correlation_score
+):
+    """
+    Predicció d'enjambrament basada en telemetria física + acústica + correlacions.
+
+    Args:
+        weight (float)
+        weight_trend (float)
+        sound_trend (float)
+        acoustic_swarm_prob (float)
+        temp_interna (float)
+        temp_externa (float)
+        humidity (float)
+        correlation_score (float)
+
+    Retorna:
+        float: probabilitat d'enjambrament (0–1)
+    """
+
+    features = np.array([
+        weight,
+        weight_trend,
+        sound_trend,
+        acoustic_swarm_prob,
+        temp_interna,
+        temp_externa,
+        humidity,
+        correlation_score
+    ]).reshape(1, -1)
+
+    dmatrix = xgb.DMatrix(features)
+    prob = MODEL.predict(dmatrix)[0]
+    return float(prob)
+Integració amb alerts_ml.py
+python
+from .model_swarm_xgb import predict_swarm
+
+def generate_swarm_alert(**kwargs):
+    prob = predict_swarm(**kwargs)
+
+    if prob > 0.80:
+        return {"tipus": "enjambrament", "severitat": "critica", "prob": prob}
+    elif prob > 0.60:
+        return {"tipus": "enjambrament", "severitat": "moderada", "prob": prob}
+    elif prob > 0.40:
+        return {"tipus": "enjambrament", "severitat": "preventiva", "prob": prob}
+    else:
+        return {"tipus": "enjambrament", "severitat": "baixa", "prob": prob}
+Documentació recomanada dins MkDocs (alerts.md o data-flow.md)
+md
+## Model d’enjambrament (XGBoost)
+
+El sistema utilitza el model `swarm_xgb.json` per predir enjambrament a partir de:
+
+- pes del rusc
+- tendència del pes
+- tendència del soroll
+- probabilitat acústica d’enjambrament (CRNN)
+- temperatura interna i externa
+- humitat
+- correlació multivariant
+
+Aquest model s’integra amb:
+
+- `ns_ml/model_swarm_xgb.py` (càrrega i inferència)
+- `ns_ml/alerts_ml.py` (alertes d’enjambrament)
+
+Sortida:
+- Probabilitat d’enjambrament (0–1)
