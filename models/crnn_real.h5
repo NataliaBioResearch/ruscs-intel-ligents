@@ -1,1 +1,13 @@
 
+Aquest model s’integra amb:
+
+- `ns_acoustic/crnn_model.py` (càrrega)
+- `ns_acoustic/crnn_inference.py` (inferència)
+- `ns_acoustic/pipeline_acoustic.py` (pipeline complet)
+
+Entrada del model:
+- Espectrograma Mel 128×128
+
+Sortida:
+- Vector de probabilitats per: vespa, estrès, enjambrament, agitació, soroll anòmal.
+
