@@ -1,9 +1,34 @@
+import os
 import numpy as np
 from .crnn_model import load_crnn_model
 from .features import compute_mel_spectrogram
 
 # Carreguem el model un cop
 MODEL = load_crnn_model()
+
+def load_classes():
+    """
+    Carrega les classes del model CRNN des de models/classes.txt.
+    Retorna:
+        list[str]: llista de classes en l'ordre del model.
+    """
+    classes_path = os.path.join(
+        os.path.dirname(os.path.dirname(__file__)),
+        "models",
+        "classes.txt"
+    )
+
+    if not os.path.exists(classes_path):
+        raise FileNotFoundError(f"Fitxer de classes no trobat: {classes_path}")
+
+    with open(classes_path, "r") as f:
+        classes = [c.strip() for c in f.readlines()]
+
+    return classes
+
+
+CLASSES = load_classes()
+
 
 def crnn_predict(audio_pcm, sr=16000):
     """
@@ -28,13 +53,5 @@ def crnn_predict(audio_pcm, sr=16000):
     # 3. Inferència
     preds = MODEL.predict(mel)[0]
 
-    # 4. Carregar classes
-    classes_path = os.path.join(
-        os.path.dirname(os.path.dirname(__file__)),
-        "models",
-        "classes.txt"
-    )
-    with open(classes_path, "r") as f:
-        classes = [c.strip() for c in f.readlines()]
-
-    return {cls: float(pred) for cls, pred in zip(classes, preds)}
+    # 4. Mapar probabilitats a classes
+    return {cls: float(pred) for cls, pred in zip(CLASSES, preds)}
