@@ -1,37 +1,47 @@
-<svg width="180" height="180" viewBox="0 0 180 180" xmlns="http://www.w3.org/2000/svg">
-  <!-- Fons suau -->
-  <rect x="0" y="0" width="180" height="180" rx="36" fill="#FFF7E5"/>
+<svg width="512" height="512" viewBox="0 0 512 512" xmlns="http://www.w3.org/2000/svg">
 
-  <!-- Ales -->
-  <ellipse cx="60" cy="95" rx="26" ry="34" fill="#E6F6FF" stroke="#1A1A1A" stroke-width="4" opacity="0.9"/>
-  <ellipse cx="120" cy="95" rx="26" ry="34" fill="#E6F6FF" stroke="#1A1A1A" stroke-width="4" opacity="0.9"/>
+  <!-- Cercle exterior -->
+  <circle cx="256" cy="256" r="240" fill="#F7F3E8"/>
 
-  <!-- Cos -->
-  <ellipse cx="90" cy="110" rx="34" ry="40" fill="#FFC93C" stroke="#1A1A1A" stroke-width="5"/>
+  <!-- Hexàgons naturalistes (fons) -->
+  <g fill="#E8DFAF" stroke="#C7B98A" stroke-width="3" opacity="0.55">
+    <polygon points="180,140 210,120 240,140 240,175 210,195 180,175"/>
+    <polygon points="280,110 310,90 340,110 340,145 310,165 280,145"/>
+    <polygon points="320,200 350,180 380,200 380,235 350,255 320,235"/>
+    <polygon points="200,260 230,240 260,260 260,295 230,315 200,295"/>
+    <polygon points="140,200 170,180 200,200 200,235 170,255 140,235"/>
+  </g>
+
+  <!-- Ales de l'abella -->
+  <ellipse cx="200" cy="260" rx="70" ry="100" fill="#E6F6FF" stroke="#1A1A1A" stroke-width="6" opacity="0.85"/>
+  <ellipse cx="310" cy="260" rx="70" ry="100" fill="#E6F6FF" stroke="#1A1A1A" stroke-width="6" opacity="0.85"/>
+
+  <!-- Cos de l'abella -->
+  <ellipse cx="256" cy="300" rx="80" ry="110" fill="#FFC93C" stroke="#1A1A1A" stroke-width="8"/>
 
   <!-- Franges -->
-  <rect x="60" y="96" width="60" height="10" fill="#1A1A1A" opacity="0.9"/>
-  <rect x="60" y="114" width="60" height="10" fill="#1A1A1A" opacity="0.9"/>
+  <rect x="190" y="260" width="130" height="25" fill="#1A1A1A" opacity="0.9"/>
+  <rect x="190" y="305" width="130" height="25" fill="#1A1A1A" opacity="0.9"/>
 
   <!-- Cap -->
-  <circle cx="90" cy="60" r="22" fill="#1A1A1A"/>
+  <circle cx="256" cy="180" r="55" fill="#1A1A1A"/>
 
   <!-- Ulls -->
-  <circle cx="82" cy="56" r="4" fill="#FFFFFF"/>
-  <circle cx="98" cy="56" r="4" fill="#FFFFFF"/>
+  <circle cx="238" cy="170" r="10" fill="#FFFFFF"/>
+  <circle cx="274" cy="170" r="10" fill="#FFFFFF"/>
 
-  <!-- Galtes suaus -->
-  <circle cx="76" cy="62" r="3" fill="#FF9E7A" opacity="0.8"/>
-  <circle cx="104" cy="62" r="3" fill="#FF9E7A" opacity="0.8"/>
+  <!-- Galtes -->
+  <circle cx="230" cy="190" r="8" fill="#FF9E7A" opacity="0.8"/>
+  <circle cx="282" cy="190" r="8" fill="#FF9E7A" opacity="0.8"/>
 
   <!-- Somriure -->
-  <path d="M80 68 Q90 74 100 68" stroke="#FFFFFF" stroke-width="2" stroke-linecap="round" fill="none"/>
+  <path d="M235 205 Q256 220 277 205" stroke="#FFFFFF" stroke-width="4" stroke-linecap="round" fill="none"/>
 
   <!-- Antenes -->
-  <line x1="80" y1="42" x2="70" y2="28" stroke="#1A1A1A" stroke-width="4" stroke-linecap="round"/>
-  <line x1="100" y1="42" x2="110" y2="28" stroke="#1A1A1A" stroke-width="4" stroke-linecap="round"/>
+  <line x1="235" y1="140" x2="210" y2="110" stroke="#1A1A1A" stroke-width="8" stroke-linecap="round"/>
+  <line x1="277" y1="140" x2="302" y2="110" stroke="#1A1A1A" stroke-width="8" stroke-linecap="round"/>
 
-  <!-- Ombra suau sota la abella -->
-  <ellipse cx="90" cy="145" rx="40" ry="8" fill="#E0D4B8" opacity="0.6"/>
+  <!-- Ombra suau -->
+  <ellipse cx="256" cy="400" rx="120" ry="25" fill="#D8CDB5" opacity="0.6"/>
+
 </svg>
-
