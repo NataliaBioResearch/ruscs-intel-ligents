@@ -27,6 +27,3 @@ with tab3:
 
 with tab4:
     sensors_dashboard()
-
-elif menu == "Model ML (XGBoost)":
-    ml_dashboard()
