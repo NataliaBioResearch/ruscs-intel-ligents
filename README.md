@@ -1,6 +1,8 @@
 <p align="center">
-  <img src="docs/logo.svg" alt="Project Logo" width="180">
+  <img src="docs/images/logo.png" alt="Ruscs Intel·ligents" width="320">
 </p>
+
+# 🐝 Ruscs Intel·ligents
 
 # Ruscs Intel·ligents
 
