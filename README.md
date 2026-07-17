@@ -1,3 +1,7 @@
+<p align="center">
+  <img src="docs/logo.svg" alt="Project Logo" width="180">
+</p>
+
 # Ruscs Intel·ligents
 
 Sistema IoT per al monitoratge de ruscs mitjançant **ESP32** i sensors de pes, temperatura, humitat, so i activitat. El projecte permet recopilar dades en temps real, detectar anomalies, generar alertes i visualitzar la informació mitjançant **MQTT**, **InfluxDB** i **Grafana**.
