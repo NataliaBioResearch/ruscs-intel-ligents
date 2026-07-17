@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="docs/images/logo.png" alt="Ruscs Intel·ligents" width="320">
+  <img src="docs/images/LOGO_RUSCS_INTEL%C2%B7LIGENTS.png" alt="Ruscs Intel·ligents" width="320">
 </p>
 
 # 🐝 Ruscs Intel·ligents
