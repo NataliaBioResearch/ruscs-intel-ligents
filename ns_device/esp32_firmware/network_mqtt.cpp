@@ -15,7 +15,6 @@ void setup_mqtt() {
         delay(500);
     }
 }
-
 void mqtt_publish(const char *topic, uint8_t *data, int len) {
     client.publish(topic, data, len);
 }
