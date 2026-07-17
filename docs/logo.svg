@@ -3,13 +3,24 @@
   <!-- Cercle exterior -->
   <circle cx="256" cy="256" r="240" fill="#F7F3E8"/>
 
-  <!-- Hexàgons naturalistes (fons) -->
-  <g fill="#E8DFAF" stroke="#C7B98A" stroke-width="3" opacity="0.55">
-    <polygon points="180,140 210,120 240,140 240,175 210,195 180,175"/>
-    <polygon points="280,110 310,90 340,110 340,145 310,165 280,145"/>
-    <polygon points="320,200 350,180 380,200 380,235 350,255 320,235"/>
-    <polygon points="200,260 230,240 260,260 260,295 230,315 200,295"/>
-    <polygon points="140,200 170,180 200,200 200,235 170,255 140,235"/>
+  <!-- Xarxa neuronal orgànica en blau xenó -->
+  <g stroke="#4FC3FF" stroke-width="4" stroke-linecap="round" opacity="0.85">
+    <line x1="150" y1="180" x2="210" y2="220"/>
+    <line x1="210" y1="220" x2="280" y2="190"/>
+    <line x1="280" y1="190" x2="340" y2="240"/>
+    <line x1="340" y1="240" x2="300" y2="300"/>
+    <line x1="300" y1="300" x2="220" y2="280"/>
+    <line x1="220" y1="280" x2="160" y2="230"/>
+  </g>
+
+  <g fill="#4FC3FF" opacity="0.9">
+    <circle cx="150" cy="180" r="10"/>
+    <circle cx="210" cy="220" r="10"/>
+    <circle cx="280" cy="190" r="10"/>
+    <circle cx="340" cy="240" r="10"/>
+    <circle cx="300" cy="300" r="10"/>
+    <circle cx="220" cy="280" r="10"/>
+    <circle cx="160" cy="230" r="10"/>
   </g>
 
   <!-- Ales de l'abella -->
