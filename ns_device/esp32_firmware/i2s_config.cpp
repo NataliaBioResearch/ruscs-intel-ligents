@@ -19,7 +19,6 @@ void setup_i2s() {
         .data_in_num = 22,
         .data_out_num = I2S_PIN_NO_CHANGE
     };
-
     i2s_driver_install(I2S_NUM_0, &i2s_config, 0, NULL);
     i2s_set_pin(I2S_NUM_0, &pin_config);
 }
